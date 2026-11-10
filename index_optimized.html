@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Yoorel — Персональная книга зимних напитков</title>
+  <meta name="description" content="24 авторских зимних рецепта и 1 особенный, созданный специально для получателя. Премиальное полиграфическое издание в твёрдом переплёте." />
+
+  <!-- Fonts: Playfair Display / Cormorant Garamond for editorial warmth + SF Pro / Inter for Apple clarity -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* -------------------------------------------------------------
+       APPLE HIG & UNSLOP TOKENS: WARM EDITORIAL LUXURY
+       ------------------------------------------------------------- */
+    :root {
+      /* Backgrounds & Neutrals (Warm Paper & Alabaster) */
+      --bg-page: #fbf9f6;
+      --bg-surface: #ffffff;
+      --bg-surface-subtle: #f5f0e9;
+      --bg-surface-elevated: rgba(255, 255, 255, 0.85);
+
+      /* Typography colors */
+      --text-primary: #1d1917;
+      --text-secondary: #574c45;
+      --text-muted: #8c7e74;
+      --text-inverse: #ffffff;
+
+      /* Brand Accents (Cinnamon, Deep Roast & Amber) */
+      --accent-warm: #b8623b;
+      --accent-warm-hover: #a1522e;
+      --accent-dark: #2a211b;
+      --accent-subtle: rgba(184, 98, 59, 0.08);
+      --accent-gold: #c29b61;
+
+      /* Hairlines & Borders */
+      --border-subtle: rgba(60, 45, 35, 0.08);
+      --border-medium: rgba(60, 45, 35, 0.14);
+      --border-accent: rgba(184, 98, 59, 0.35);
+
+      /* Shadows (Apple Natural Depth) */
+      --shadow-sm: 0 2px 8px rgba(35, 25, 20, 0.04);
+      --shadow-md: 0 8px 24px rgba(35, 25, 20, 0.06);
+      --shadow-lg: 0 20px 48px rgba(35, 25, 20, 0.1);
+      --shadow-book: 0 24px 60px -12px rgba(45, 30, 20, 0.28), 0 10px 20px -8px rgba(45, 30, 20, 0.16);
+
+      /* Layout & Spacing (4px grid) */
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 32px;
+      --radius-full: 9999px;
+
+      /* Transitions */
+      --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+      --duration-normal: 0.3s;
+    }
+
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-family: -apple-system, BlinkMacSystemFont, "Plus Jakarta Sans", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* Editorial serif typography */
+    h1, h2, h3, .font-serif {
+      font-family: "Cormorant Garamond", Georgia, "New York", serif;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      line-height: 1.15;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--duration-normal);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    /* -------------------------------------------------------------
+       NAVBAR (Apple Frosted Glass Style)
+       ------------------------------------------------------------- */
+    .nav-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .nav-island {
+      pointer-events: auto;
+      width: 100%;
+      max-width: 1140px;
+      height: 56px;
+      background: rgba(251, 249, 246, 0.82);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-full);
+      padding: 0 16px 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--duration-normal) var(--ease-spring);
+    }
+
+    .brand-logo {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--accent-dark);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .brand-logo span {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-warm);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      font-size: 14.5px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-pill-subtle {
+      height: 38px;
+      padding: 0 16px;
+      border-radius: var(--radius-full);
+      font-size: 13.5px;
+      font-weight: 600;
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      border: 1px solid var(--border-medium);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all var(--duration-normal);
+    }
+
+    .btn-pill-subtle:hover {
+      background: #f7f2eb;
+      border-color: var(--border-subtle);
+    }
+
+    .btn-pill-primary {
+      height: 38px;
+      padding: 0 20px;
+      border-radius: var(--radius-full);
+      font-size: 13.5px;
+      font-weight: 600;
+      background: var(--accent-dark);
+      color: var(--text-inverse);
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--duration-normal) var(--ease-spring);
+    }
+
+    .btn-pill-primary:hover {
+      background: var(--accent-warm);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(184, 98, 59, 0.25);
+    }
+
+    /* -------------------------------------------------------------
+       HERO SECTION: THE EDITORIAL BOOK SHOWCASE
+       ------------------------------------------------------------- */
+    .hero-section {
+      min-height: 100vh;
+      padding: 130px 24px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: radial-gradient(circle at 75% 35%, rgba(238, 226, 214, 0.65) 0%, rgba(251, 249, 246, 0) 65%);
+    }
+
+    .hero-container {
+      width: 100%;
+      max-width: 1140px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-warm);
+      margin-bottom: 20px;
+    }
+
+    .hero-eyebrow::before {
+      content: "";
+      width: 18px;
+      height: 1.5px;
+      background: var(--accent-warm);
+    }
+
+    .hero-title {
+      font-size: clamp(40px, 5.5vw, 68px);
+      font-weight: 600;
+      color: var(--accent-dark);
+      margin-bottom: 24px;
+      line-height: 1.05;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent-warm);
+      font-weight: 400;
+    }
+
+    .hero-lead {
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin-bottom: 36px;
+    }
+
+    /* Interactive Live Name Preview Box */
+    .live-preview-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 480px;
+    }
+
+    .live-preview-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .live-preview-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .live-preview-input {
+      width: 100%;
+      height: 48px;
+      background: var(--bg-surface-subtle);
+      border: 1.5px solid transparent;
+      border-radius: var(--radius-md);
+      padding: 0 16px;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-primary);
+      outline: none;
+      transition: all var(--duration-normal);
+    }
+
+    .live-preview-input:focus {
+      background: #fff;
+      border-color: var(--accent-warm);
+      box-shadow: 0 0 0 4px var(--accent-subtle);
+    }
+
+    .live-preview-hint {
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero-primary {
+      height: 52px;
+      padding: 0 32px;
+      border-radius: var(--radius-full);
+      font-size: 15.5px;
+      font-weight: 600;
+      background: var(--accent-warm);
+      color: #fff;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 24px rgba(184, 98, 59, 0.28);
+      transition: all var(--duration-normal) var(--ease-spring);
+    }
+
+    .btn-hero-primary:hover {
+      background: var(--accent-warm-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(184, 98, 59, 0.35);
+    }
+
+    .btn-hero-secondary {
+      height: 52px;
+      padding: 0 24px;
+      border-radius: var(--radius-full);
+      font-size: 15px;
+      font-weight: 600;
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border-medium);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all var(--duration-normal);
+    }
+
+    .btn-hero-secondary:hover {
+      background: rgba(0, 0, 0, 0.03);
+      border-color: var(--text-muted);
+    }
+
+    /* Tactile Book Showcase (Right Column) */
+    .hero-visual-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .book-stage {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      perspective: 1200px;
+    }
+
+    .book-cover-frame {
+      position: relative;
+      border-radius: 12px 18px 18px 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-book);
+      background: #1b1613;
+      transform: rotateY(-8deg) rotateX(4deg);
+      transition: transform 0.6s var(--ease-spring);
+    }
+
+    .book-cover-frame:hover {
+      transform: rotateY(-2deg) rotateX(1deg) translateY(-8px);
+    }
+
+    .book-cover-img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Live Overlaid Recipient Name on Cover */
+    .book-cover-badge {
+      position: absolute;
+      bottom: 24px;
+      left: 20px;
+      right: 20px;
+      background: rgba(28, 22, 18, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .book-cover-badge-title {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+
+    .book-cover-badge-name {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .floating-quality-card {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: floatBadge 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatBadge {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-8px); }
+    }
+
+    .floating-quality-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent-subtle);
+      color: var(--accent-warm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .floating-quality-text strong {
+      display: block;
+      font-size: 13.5px;
+      color: var(--text-primary);
+    }
+
+    .floating-quality-text span {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* -------------------------------------------------------------
+       EDITORIAL VALUE STRIP (Key Numbers)
+       ------------------------------------------------------------- */
+    .value-strip {
+      padding: 50px 24px;
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+    }
+
+    .value-grid {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+
+    .value-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .value-num {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--accent-dark);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .value-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .value-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* -------------------------------------------------------------
+       SPREAD SHOWCASE: "LOOK INSIDE" (Actual Book Pages)
+       ------------------------------------------------------------- */
+    .spreads-section {
+      padding: 100px 24px;
+      background: var(--bg-page);
+      overflow: hidden;
+    }
+
+    .section-header {
+      max-width: 680px;
+      margin: 0 auto 60px;
+      text-align: center;
+    }
+
+    .section-eyebrow {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-warm);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 4.2vw, 48px);
+      color: var(--accent-dark);
+      margin-bottom: 16px;
+    }
+
+    .section-lead {
+      font-size: 17px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Spreads Carousel */
+    .spreads-slider-wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .spreads-slider-wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .spreads-track {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 20px 8px 30px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+      will-change: scroll-position;
+      transform: translateZ(0);
+    }
+
+    .spread-card {
+      flex: 0 0 clamp(320px, 45vw, 540px);
+      scroll-snap-align: center;
+      background: var(--bg-surface);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-medium);
+      box-shadow: 0 6px 20px rgba(35, 25, 20, 0.06);
+      overflow: hidden;
+      position: relative;
+      will-change: transform;
+      transform: translateZ(0);
+      transition: transform 0.25s var(--ease-spring), box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .spread-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(35, 25, 20, 0.1);
+      border-color: var(--border-accent);
+    }
+
+    .spread-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 340px;
+      background: #eae2d7;
+      overflow: hidden;
+    }
+
+    /* Subtle spine crease simulating physical book center */
+    .spread-img-wrap::after {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0; left: 49%; width: 2%;
+      background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.08) 50%, transparent);
+      pointer-events: none;
+    }
+
+    .spread-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Carousel navigation controls */
+    .spreads-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .spread-nav-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1px solid rgba(60, 45, 35, 0.14);
+      box-shadow: 0 2px 8px rgba(35, 25, 20, 0.06);
+      color: #3d322a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .spread-nav-btn:hover {
+      background: #fbf8f5;
+      border-color: var(--accent-warm);
+      color: var(--accent-warm);
+      transform: scale(1.05);
+    }
+
+    .spread-nav-btn:active {
+      transform: scale(0.95);
+    }
+
+    .spreads-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .spread-card {
+      flex: 0 0 clamp(320px, 45vw, 540px);
+      scroll-snap-align: center;
+      background: var(--bg-surface);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-medium);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      transition: all var(--duration-normal) var(--ease-spring);
+    }
+
+    .spread-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--border-accent);
+    }
+
+    .spread-img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      background: #eae2d7;
+    }
+
+    .spread-caption {
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .spread-name {
+      font-family: -apple-system, BlinkMacSystemFont, "Plus Jakarta Sans", "SF Pro Text", sans-serif;
+      font-size: 16.5px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+    }
+
+    .spread-tag {
+      font-size: 12px;
+      font-weight: 500;
+      color: #8a4827;
+      background: rgba(184, 98, 59, 0.08);
+      border: 1px solid rgba(184, 98, 59, 0.16);
+      padding: 3px 9px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    /* -------------------------------------------------------------
+       THE 4-STEP PROCESS (Unslopped & Clear)
+       ------------------------------------------------------------- */
+    .process-section {
+      padding: 100px 24px;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .process-grid {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+
+    .process-card {
+      background: var(--bg-surface-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all var(--duration-normal);
+    }
+
+    .process-card:hover {
+      background: #fff;
+      border-color: var(--border-medium);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .process-step-num {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--accent-warm);
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+
+    .process-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .process-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* -------------------------------------------------------------
+       PRICING / EDITIONS (PDF vs PRINT)
+       ------------------------------------------------------------- */
+    .pricing-section {
+      padding: 100px 24px;
+      background: var(--bg-page);
+    }
+
+    .pricing-grid {
+      max-width: 920px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: stretch;
+    }
+
+    .pricing-card {
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-medium);
+      border-radius: var(--radius-xl);
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all var(--duration-normal) var(--ease-spring);
+    }
+
+    .pricing-card.featured {
+      border-color: var(--accent-warm);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: -12px;
+      right: 28px;
+      background: var(--accent-warm);
+      color: #fff;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+    }
+
+    .pricing-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 28px;
+      color: var(--accent-dark);
+      margin-bottom: 8px;
+    }
+
+    .pricing-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .pricing-cost {
+      font-size: 42px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .pricing-cost small {
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 36px;
+      flex: 1;
+    }
+
+    .pricing-features li {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pricing-features li::before {
+      content: "✓";
+      color: var(--accent-warm);
+      font-weight: 800;
+    }
+
+    .btn-pricing {
+      height: 48px;
+      border-radius: var(--radius-full);
+      font-size: 14.5px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--duration-normal);
+      border: 1px solid var(--border-medium);
+      background: var(--bg-surface-subtle);
+      color: var(--text-primary);
+    }
+
+    .pricing-card.featured .btn-pricing {
+      background: var(--accent-dark);
+      color: #fff;
+      border: none;
+    }
+
+    .pricing-card.featured .btn-pricing:hover {
+      background: var(--accent-warm);
+      box-shadow: 0 4px 16px rgba(184, 98, 59, 0.28);
+    }
+
+    /* -------------------------------------------------------------
+       FAQ ACCORDION (Apple Native Style)
+       ------------------------------------------------------------- */
+    .faq-section {
+      padding: 100px 24px;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .faq-container {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .faq-trigger {
+      width: 100%;
+      padding: 24px 0;
+      background: none;
+      border: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--accent-dark);
+      cursor: pointer;
+    }
+
+    .faq-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--border-medium);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: var(--text-muted);
+      transition: transform var(--duration-normal);
+      flex-shrink: 0;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+      background: var(--accent-dark);
+      color: #fff;
+      border-color: var(--accent-dark);
+    }
+
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+      color: var(--text-secondary);
+      font-size: 15.5px;
+      line-height: 1.6;
+    }
+
+    .faq-content-inner {
+      padding-bottom: 24px;
+    }
+
+    /* -------------------------------------------------------------
+       FOOTER (Minimal & Refined)
+       ------------------------------------------------------------- */
+    .footer {
+      padding: 60px 24px 40px;
+      background: var(--accent-dark);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 13.5px;
+    }
+
+    .footer-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-brand {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    /* -------------------------------------------------------------
+       RESPONSIVE BREAKPOINTS
+       ------------------------------------------------------------- */
+    @media (max-width: 900px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+      }
+      .hero-lead, .live-preview-box {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .value-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        display: none;
+      }
+      .value-grid, .process-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 36px;
+      }
+    }
+  
+    /* -------------------------------------------------------------
+       TILDA ST100 CART ICON REFINEMENT & SIZING FIX
+       ------------------------------------------------------------- */
+    .t706__carticon-img {
+      box-sizing: content-box !important;
+      stroke: #2a211b !important;
+      display: block !important;
+      margin: 0 auto !important;
+    }
+    .t706__carticon-img path {
+      stroke: #2a211b !important;
+      stroke-width: 2.2px !important;
+    }
+    .t706__carticon-imgwrap {
+      background: rgba(255, 255, 255, 0.95) !important;
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      border: 1px solid rgba(60, 45, 35, 0.12) !important;
+      box-shadow: 0 10px 30px rgba(35, 25, 20, 0.15) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .t706__carticon-imgwrap:hover {
+      transform: scale(1.08) !important;
+    }
+    .t706__carticon-counter {
+      background-color: #b8623b !important;
+      color: #ffffff !important;
+      font-family: -apple-system, BlinkMacSystemFont, "Plus Jakarta Sans", sans-serif !important;
+      font-weight: 700 !important;
+      font-size: 13px !important;
+      box-shadow: 0 2px 8px rgba(184, 98, 59, 0.45) !important;
+      border: 2px solid #ffffff !important;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- FLOATING FROSTED NAVBAR (Apple Style) -->
+  <header class="nav-wrap">
+    <nav class="nav-island">
+      <a href="#" class="brand-logo">
+        Yoorel <span></span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#about">О книге</a>
+        <a href="#spreads">Развороты</a>
+        <a href="#process">Как это работает</a>
+        <a href="#pricing">Тарифы</a>
+        <a href="#faq">FAQ</a>
+      </div>
+
+      <div class="nav-actions">
+        <button type="button" class="btn-pill-primary" id="topOpenQuizBtn">
+          Создать книгу
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION: THE EDITORIAL BOOK SHOWCASE -->
+  <main>
+    <section class="hero-section" id="about">
+      <div class="hero-container">
+        
+        <!-- Left: Editorial Content & Live Name Interaction -->
+        <div class="hero-content">
+          <div class="hero-eyebrow">Персональное подарочное издание</div>
+          <h1 class="hero-title">
+            Зимние напитки <em>для особенного человека</em>
+          </h1>
+          <p class="hero-lead">
+            Книга, которая пишется для одного адресата. 24 авторских согревающих рецепта от шефов и один уникальный — созданный лично на основе характера и вкусов получателя.
+          </p>
+
+          <!-- Interactive Live Name Input (Apple Deference Principle) -->
+          <div class="live-preview-box">
+            <div class="live-preview-label">
+              <span>Примерьте имя на обложку</span>
+              <span style="color: var(--accent-warm);">Интерактивно</span>
+            </div>
+            <div class="live-preview-input-wrap">
+              <input 
+                type="text" 
+                id="heroNameInput" 
+                class="live-preview-input" 
+                placeholder="Введите имя (например: Аня, Мама, Михаил)" 
+                value="Аня"
+                autocomplete="off"
+              />
+            </div>
+            <div class="live-preview-hint">Имя моментально появится на твёрдом переплёте справа →</div>
+          </div>
+
+          <div class="hero-actions">
+            <button type="button" class="btn-hero-primary" id="heroStartBtn">
+              Собрать свою книгу →
+            </button>
+            <a href="#spreads" class="btn-hero-secondary">
+              Смотреть развороты
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Tactile 3D Hardcover Mockup -->
+        <div class="hero-visual-wrap">
+          <div class="book-stage">
+            <div class="book-cover-frame">
+              <img 
+                src="https://static.tildacdn.pub/tila3762-3432-4135-b261-623730613634/ann.png" 
+                alt="Обложка персональной книги Yoorel" 
+                class="book-cover-img"
+              />
+              
+              <!-- Dynamic Name Badge overlaid on physical book -->
+              <div class="book-cover-badge">
+                <div>
+                  <div class="book-cover-badge-title">Персональное издание</div>
+                  <div class="book-cover-badge-name" id="bookNameBadge">для Ани</div>
+                </div>
+                <div style="font-size: 20px;">☕</div>
+              </div>
+            </div>
+
+            <div class="floating-quality-card">
+              <div class="floating-quality-icon">✦</div>
+              <div class="floating-quality-text">
+                <strong>Твёрдый переплёт</strong>
+                <span>Плотная бумага 200 г/м²</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EDITORIAL VALUE STRIP -->
+    <section class="value-strip">
+      <div class="value-grid">
+        <div class="value-item">
+          <div class="value-num">24</div>
+          <div class="value-title">Авторских рецептов</div>
+          <div class="value-desc">От пряного цитрусового глинтвейна до шоколада на коричневом масле.</div>
+        </div>
+        <div class="value-item">
+          <div class="value-num">1</div>
+          <div class="value-title">Секретный рецепт</div>
+          <div class="value-desc">Разрабатывается исключительно для адресата на основе квиза.</div>
+        </div>
+        <div class="value-item">
+          <div class="value-num">100%</div>
+          <div class="value-title">Персонализация</div>
+          <div class="value-desc">Имя на обложке, личная фотография и тёплые слова на титульном листе.</div>
+        </div>
+        <div class="value-item">
+          <div class="value-num">СДЭК</div>
+          <div class="value-title">Доставка в руки</div>
+          <div class="value-desc">Бережная доставка по РФ и СНГ до пункта выдачи или курьером.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPREAD SHOWCASE: REAL PAGES FROM THE BOOK -->
+    <section class="spreads-section" id="spreads">
+      <div class="section-header">
+        <div class="section-eyebrow">Загляните внутрь</div>
+        <h2 class="section-title">Каждая страница создана как произведение искусства</h2>
+        <p class="section-lead">
+          Крупные фотокартины, выверенная издательская типографика и пошаговые инструкции, превращающие приготовление зимнего напитка в медитативный вечерний ритуал.
+        </p>
+      </div>
+
+      <div class="spreads-slider-wrap">
+        <div class="spreads-track">
+          
+          <div class="spread-card">
+            <div class="spread-img-wrap"><img src="https://static.tildacdn.com/tila3438-6338-4163-a665-373132343562/page-08.jpg" alt="Шоколад на коричневом масле" class="spread-img"></div>
+            <div class="spread-caption">
+              <div class="spread-name">Шоколад на коричневом масле</div>
+              <span class="spread-tag">Шоколадная классика</span>
+            </div>
+          </div>
+
+          <div class="spread-card">
+            <div class="spread-img-wrap"><img src="https://static.tildacdn.com/tila3534-3133-4638-a135-346332393133/page-09.jpg" alt="Пряная зимняя сангрия" class="spread-img"></div>
+            <div class="spread-caption">
+              <div class="spread-name">Зимняя пряная сангрия</div>
+              <span class="spread-tag">Цитрусы и специи</span>
+            </div>
+          </div>
+
+          <div class="spread-card">
+            <div class="spread-img-wrap"><img src="https://static.tildacdn.com/tila6338-6338-4265-a563-383833303839/page-05.jpg" alt="Золотой эгг-ног" class="spread-img"></div>
+            <div class="spread-caption">
+              <div class="spread-name">Золотой сливочный эгг-ног</div>
+              <span class="spread-tag">Шелковистая текстура</span>
+            </div>
+          </div>
+
+          <div class="spread-card">
+            <div class="spread-img-wrap"><img src="https://static.tildacdn.com/tila3832-6434-4233-b736-326232616130/page-11.jpg" alt="Черный лес" class="spread-img"></div>
+            <div class="spread-caption">
+              <div class="spread-name">Горячий шоколад «Чёрный лес»</div>
+              <span class="spread-tag">Вишня и амаретто</span>
+            </div>
+          </div>
+
+          <div class="spread-card">
+            <div class="spread-img-wrap"><img src="https://static.tildacdn.com/tila6335-6566-4464-b532-383134663638/page-16.jpg" alt="Рубиновый бархат" class="spread-img"></div>
+            <div class="spread-caption">
+              <div class="spread-name">Чай «Рубиновый бархат»</div>
+              <span class="spread-tag">Ягоды и розмарин</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="spreads-controls">
+          <button type="button" class="spread-nav-btn" id="spreadPrevBtn" aria-label="Предыдущий разворот">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button type="button" class="spread-nav-btn" id="spreadNextBtn" aria-label="Следующий разворот">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE 4-STEP PROCESS (Unslopped) -->
+    <section class="process-section" id="process">
+      <div class="section-header">
+        <div class="section-eyebrow">Простой и честный порядок</div>
+        <h2 class="section-title">4 шага до идеального подарка</h2>
+        <p class="section-lead">
+          Вам не нужно быть писателем или дизайнером. Мы берем на себя верстку, подбор рецепта и печать.
+        </p>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-card">
+          <div class="process-step-num">01</div>
+          <h3 class="process-title">Ответьте на вопросы</h3>
+          <p class="process-desc">Укажите имя получателя и выберите его любимые вкусы, настроение и атмосферу в коротком тесте.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-step-num">02</div>
+          <h3 class="process-title">Сформируйте слова</h3>
+          <p class="process-desc">Мы подготовим душевное персонализированное поздравление. Вы можете скорректировать любое слово.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-step-num">03</div>
+          <h3 class="process-title">Прикрепите фото</h3>
+          <p class="process-desc">Фотография будет заботливо обработана и украсит персональную страницу рецепта и обложку.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-step-num">04</div>
+          <h3 class="process-title">Печать и доставка</h3>
+          <p class="process-desc">Отправляем PDF за 24 часа или бережно упаковываем твёрдую книгу и доставляем курьером СДЭК.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING / EDITIONS SECTION -->
+    <section class="pricing-section" id="pricing">
+      <div class="section-header">
+        <div class="section-eyebrow">Тарифы</div>
+        <h2 class="section-title">Выберите формат издания</h2>
+        <p class="section-lead">
+          Оба варианта включают полную персонализацию текста, рецепта и фотографии.
+        </p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- PDF Edition -->
+        <div class="pricing-card">
+          <h3 class="pricing-title">Электронная книга</h3>
+          <div class="pricing-subtitle">Идеально для мгновенного подарка или чтения с планшета</div>
+          <div class="pricing-cost">990 ₽ <small>/ файл</small></div>
+          <ul class="pricing-features">
+            <li>PDF-файл сверхвысокого полиграфического разрешения</li>
+            <li>24 авторских рецепта + 1 персональный</li>
+            <li>Персональное поздравление и ваше фото</li>
+            <li>Готовность за 24 часа на электронную почту</li>
+            <li>Возможность напечатать в типографии самостоятельно</li>
+          </ul>
+          <button type="button" class="btn-pricing" onclick="openOrderModalWithFormat('pdf', 990)">
+            Выбрать PDF-версию
+          </button>
+        </div>
+
+        <!-- Hardcover Print Edition (Featured) -->
+        <div class="pricing-card featured">
+          <div class="pricing-badge">Выбор читателей</div>
+          <h3 class="pricing-title">Печатная книга</h3>
+          <div class="pricing-subtitle">Настоящий подарок в премиальном твёрдом переплёте</div>
+          <div class="pricing-cost">2 990 ₽ <small>/ экземпляр</small></div>
+          <ul class="pricing-features">
+            <li>Твёрдый матовый переплёт, золотое тиснение</li>
+            <li>Плотная дизайнерская бумага 200 г/м²</li>
+            <li>Профессиональная допечатная подготовка фото</li>
+            <li>Подарочная брендированная упаковка в комплекте</li>
+            <li>Доставка СДЭК до двери или пункта выдачи</li>
+          </ul>
+          <button type="button" class="btn-pricing" onclick="openOrderModalWithFormat('print', 2990)">
+            Заказать печатную книгу →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ ACCORDION -->
+    <section class="faq-section" id="faq">
+      <div class="section-header">
+        <div class="section-eyebrow">Вопросы и ответы</div>
+        <h2 class="section-title">Часто задаваемые вопросы</h2>
+      </div>
+
+      <div class="faq-container">
+        
+        <div class="faq-item">
+          <button class="faq-trigger">
+            <span>Сколько времени занимает изготовление и доставка?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-content-inner">
+              Электронную версию (PDF) мы отправляем на вашу почту в течение 24–48 часов после оформления. Печать книги занимает 1–2 рабочих дня, после чего заказ передается в курьерскую службу СДЭК. По Москве и МО доставка занимает 1–3 дня, по России — от 3 до 7 дней.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger">
+            <span>Как формируется секретный 25-й рецепт?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-content-inner">
+              Рецепт подбирается шеф-кондитером и нашей системой на основе ваших ответов в тесте (любимые специи, крепость, сладость, настроение). Он гармонично сочетается с характером адресата и носит его имя.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger">
+            <span>Что делать, если у меня нет хорошего фото прямо сейчас?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-content-inner">
+              Вы можете оформить заказ без фотографии! Наш редактор свяжется с вами в Telegram или по почте, и вы сможете отправить снимок позже в спокойной обстановке до отправки книги в печать.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger">
+            <span>Куда доставляет СДЭК?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-content-inner">
+              Мы доставляем по всей территории России, а также в Беларусь, Казахстан, Армению и Кыргызстан. При оформлении заказа в корзине вы можете выбрать удобный пункт выдачи заказов (ПВЗ) рядом с домом или доставку курьером до двери.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">Yoorel</div>
+      <div class="footer-links">
+        <a href="https://t.me/yoorel_gift_box" target="_blank">Telegram</a>
+        <a href="https://yoorel.tilda.ws/oferta" target="_blank">Договор-оферта</a>
+        <a href="https://yoorel.tilda.ws/politics" target="_blank">Политика конфиденциальности</a>
+        <a href="https://yoorel.tilda.ws/company" target="_blank">О компании</a>
+      </div>
+      <div>© 2026 Yoorel. Все права защищены.</div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT: INTERACTION & LIVE PROTOTYPING -->
+  <script>
+    // Live name preview synchronization
+    const heroInput = document.getElementById('heroNameInput');
+    const bookBadge = document.getElementById('bookNameBadge');
+
+    if (heroInput && bookBadge) {
+      heroInput.addEventListener('input', (e) => {
+        const val = e.target.value.trim();
+        bookBadge.textContent = val ? `для ${val}` : 'для получателя';
+      });
+    }
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-trigger').forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const item = trigger.closest('.faq-item');
+        const content = item.querySelector('.faq-content');
+        const isActive = item.classList.contains('active');
+
+        // Close all
+        document.querySelectorAll('.faq-item').forEach(i => {
+          i.classList.remove('active');
+          i.querySelector('.faq-content').style.maxHeight = null;
+        });
+
+        if (!isActive) {
+          item.classList.add('active');
+          content.style.maxHeight = content.scrollHeight + 'px';
+        }
+      });
+    });
+
+    </script>
+</body>
+</html>
